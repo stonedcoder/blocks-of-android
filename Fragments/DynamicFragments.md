@@ -13,8 +13,11 @@ We can customize the UI at the runtime using Fragments. Say for example you acti
 * Fragment changes when device changes it orientation. say we want to display Fragment1 when device is in portrait mode and Fragment2 when device is in the landscape mode.
 
 * So now we just need to know the orientation of the device. That you can get by
+
 ```java
-int displaymode = getResources().getConfiguration().orientation;```
+
+int displaymode = getResources().getConfiguration().orientation;
+```
 
 * if displaymode =1 then device is in portrait mode else it’s in landscape mode.
 
@@ -22,6 +25,7 @@ int displaymode = getResources().getConfiguration().orientation;```
 **Fragment1.xml**
 
 ```xml
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
@@ -36,11 +40,13 @@ android:gravity="center"
 android:background="#5eff6a"
 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</LinearLayout>```
+</LinearLayout>
+```
 
 **Fragment2.xml**
 
 ```xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
@@ -56,7 +62,8 @@ android:gravity="center"
 android:background="#ff9e5e"
 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</LinearLayout>```
+</LinearLayout>
+```
 
 **activity_main.xml**
 ```xml
@@ -67,7 +74,8 @@ android:id="@+id/LinearLayout1"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="horizontal" >
-</LinearLayout>```
+</LinearLayout>
+```
 
 **Fragment1.java**
 
@@ -85,7 +93,8 @@ public View onCreateView(LayoutInflater inflater, ViewGroup vg,
 Bundle savedInstanceState) {
 return inflater.inflate(R.layout.fragment1, vg, false);
 }
-}```
+}
+```
 
 
 **Fragment2.java**
