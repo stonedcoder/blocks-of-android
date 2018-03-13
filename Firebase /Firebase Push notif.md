@@ -15,6 +15,7 @@ Firebase gives developers the ability not only to send notifications but also to
 * In order to use Google services plug-ins, you’ll need to edit the build.gradle (app )file in Android Studio.
 
 ```java
+
 buildscript {
 
 dependencies {
@@ -23,11 +24,13 @@ classpath 'com.google.gms:google-services:3.0.0'
 
 }
 
-}```
+}
+```
 
 * Add the following line to the end of the build.gradle file.
 
 ```java
+
 apply plugin: 'com.google.gms.google-services
 ```
 * Now we add the Firebase dependencies .
@@ -51,11 +54,13 @@ Then, update the services using com.google.android.gms: play-services
 
 
 ```java
+
 android {
 defaultConfig{
 applicationId "com.example.my.app" //your app’s id
 }
-}```
+}
+```
 
 * Add the Service to the Application .
 
