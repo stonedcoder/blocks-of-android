@@ -25,6 +25,7 @@ Fragments were introduced in Android 3.0 (API level 11) to provide more flexible
 * Add a layout for `Fragment1.java` .
 
 ```xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
@@ -40,11 +41,13 @@ android:gravity="center"
 android:background="#5eff6a"
 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</LinearLayout>```
+</LinearLayout>
+```
 
 * Add a layout for `Fragment2.java` .
 
 ```xml
+
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
@@ -65,6 +68,7 @@ android:textAppearance="?android:attr/textAppearanceLarge" />
 * Now , we've to include both the fragments inside `activity_main.xml` .
 
 ```xml
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/LinearLayout1"
@@ -91,6 +95,7 @@ android:layout_weight="1" />
 * Now open up `Fragment1.java`
 
 ```java
+
 package com.Stonedcoder.coding-blocks.staticfragments ;
 
 import android.annotation.SuppressLint;
@@ -106,11 +111,13 @@ public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle savedInst
 return inflater.inflate(R.layout.fragment1, vg,false);
 
 }
-}```
+}
+```
 
 * Now open up `Fragment2.java`
 
 ```java
+
 package com.Stonedcoder.coding-blocks.staticfragments ;
 
 import android.app.Fragment;
@@ -124,4 +131,5 @@ public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle savedInst
 return inflater.inflate(R.layout.fragment2, vg,false);
 
 }
-}```
+}
+```
