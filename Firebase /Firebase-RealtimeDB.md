@@ -14,6 +14,7 @@ Instead, the data is stored in the form of a `JSON` object. JSON is an acronym f
 # Nested JSON Data .
 
 ```Json
+
 {
 "profile" : {
 "name" : "Raunaq",
@@ -22,7 +23,8 @@ Instead, the data is stored in the form of a `JSON` object. JSON is an acronym f
 "verified" : true
 }
 }
-}```
+}
+```
 
 * In this case, a JSON object has been declared with “profile” as the key. This object consists of two child nodes identified by keys which read “name” and “email”. The “email” object, in turn, contains two child objects containing the user’s email address and a value indicating whether or not the email address has been verified.
 
@@ -40,55 +42,68 @@ Instead, the data is stored in the form of a `JSON` object. JSON is an acronym f
 * Add dependency to your root level build.gradle file.
 
 ```java
+
 dependencies {
 ...
 classpath 'com.google.gms:google-services:3.0.0'
-}```
+}
+```
 
 * Add dependency to your app/module level build.gradle file.
 
 ```java
+
 dependencies {
 ...
 compile 'com.google.firebase:firebase-database:10.2.4'
-}```
+}
+```
 
 * Add plugin at the bottom of your app-level build.gradle file.
 
 ```java
-apply plugin: 'com.google.gms.google-services'```
+
+apply plugin: 'com.google.gms.google-services'
+```
 
 * After adding google.json file and all setup you might get this error.
 
 ```java
+
 Error:Execution failed for task ‘:app:processDebugGoogleServices’.
-> Missing api_key/current_key object```
+> Missing api_key/current_key object
+```
 
 * It is a bug in google-services:3.0.0, once you add any service of the Firebase, replace the google.json file with newly created file. You can get new google.json file from Project Settings in Firebase console.
 
 * Default : It allows authenticated users to read and write data. They are useful if you want data open to all users of your app.
 
 ```JSON
+
 {
 "rules": {
 ".read": "auth != null",
 ".write": "auth != null"
 }
-}```
+}
+```
 
 * Public : It allows everyone to access your application database.
 
 ```JSON
+
 {
 "rules": {
 ".read": true,
 ".write": true
 }
-}```
+}
+```
 
 * User : It gives each authenticated user a personal node at /users/$user_id where $user_id is the ID of the user obtained through Authentication.
 
 ```JSON
+
 {
 "rules": {
 "users": {
@@ -98,34 +113,42 @@ Error:Execution failed for task ‘:app:processDebugGoogleServices’.
 }
 }
 }
-}```
+}
+```
 
 * Private : It will disable read and write operation for all users. Admin can only access data from Firebase Console.
 
 ```JSON
+
 {
 "rules": {
 ".read": false,
 ".write": false
 }
-}```
+}
+```
 
 * In order to write data to Firebase Database, you need an instance.
 
 ```Java
-FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();```
+
+FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+```
 
 * Create a reference of your parent node and write data into it.
 
 ```Java
+
 DatabaseReference databaseReference = firebaseDatabase.getReference("version");
-databaseReference.setValue(BuildConfig.VERSION_NAME);```
+databaseReference.setValue(BuildConfig.VERSION_NAME);
+```
 
 * It will create a node named “version” and writes value into it.
 
 # Read data added to database
 
 ```Java
+
 databaseReference.addValueEventListener(new ValueEventListener() {
 @Override
 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -135,7 +158,8 @@ Log.e("MainActivity", "version : " + dataSnapshot.getValue(String.class));
 public void onCancelled(DatabaseError databaseError) {
 Log.e("MainActivity", "onCancelled: " + databaseError.toString());
 }
-});```
+});
+```
 
 * Here we have added string data so we can write dataSnapshot.getValue(String.class). If it is other datatype, you can mention it there.
 
@@ -143,8 +167,10 @@ Log.e("MainActivity", "onCancelled: " + databaseError.toString());
 # Write an object to the database :
 
 ```Java
+
 DatabaseReference databaseReference = firebaseDatabase.getReference("user");
-databaseReference.setValue(new User("Android","Raunaq"));```
+databaseReference.setValue(new User("Android","Raunaq"));
+```
 
 * It will create a node named “user” and writes data into it.
 
@@ -154,8 +180,10 @@ databaseReference.setValue(new User("Android","Raunaq"));```
 As we know this is not the right way to write the data. We can have multiple users so data should be structured. Lets see how to make it.
 
 ```Java
+
 databaseReference.push().setValue(new User("Android","Raunaq"));
-databaseReference.push().setValue(new User("Android1","Coding-blocks"));```
+databaseReference.push().setValue(new User("Android1","Coding-blocks"));
+```
 
 * `push()` will create a unique id and User data will be stored inside that.
 
@@ -163,6 +191,7 @@ databaseReference.push().setValue(new User("Android1","Coding-blocks"));```
 # Listener for particular node .
 
 ```Java
+
 databaseReference.addValueEventListener(new ValueEventListener() {
 @Override
 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -171,11 +200,13 @@ Log.e("MainActivity", "user : " + dataSnapshot.getValue(User.class).getFirstName
 @Override
 public void onCancelled(DatabaseError databaseError) {
 }
-});```
+});
+```
 
 * Whenever there is a change in specified node, onDataChange will be called on each active users device.
 
 ```Java
+
 databaseReference.setValue(new User("Android","Gig"));
 databaseReference.addValueEventListener(new ValueEventListener() {
 @Override
@@ -186,7 +217,8 @@ Log.e("MainActivity", "user : " + user.getFirstName() + " " + user.getLastName()
 @Override
 public void onCancelled(DatabaseError databaseError) {
 }
-});```
+});
+```
 
 
 
