@@ -13,6 +13,7 @@ Android 6.0 Marshmallow (API 23) introduced a new runtime permission model. If y
 * Modify the `MainActivity.java` file to declare a request code and request recording permission in the event that the permission check failed .
 
 ```java
+
 package com.stonedcoder.coding-blocks.permissions;
 
 import android.Manifest;
@@ -46,11 +47,13 @@ ActivityCompat.requestPermissions(this,
 new String[]{Manifest.permission.RECORD_AUDIO},
 RECORD_REQUEST_CODE);
 }
-}```
+}
+```
 
 * Now implement the onRequestPermissionsResult() method.
 
 ```java
+
 @Override
 public void onRequestPermissionsResult(int requestCode,
 String permissions[], int[] grantResults) {
