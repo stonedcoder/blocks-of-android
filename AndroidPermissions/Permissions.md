@@ -36,9 +36,11 @@ Storage: Read and write to device’s external storage.
 It indicates that there's no great risk to the user's privacy or security in letting apps have those permissions.
 
 ```xml
+
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-<uses-permission android:name="android.permission.BLUETOOTH"/>```
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+```
 
 
 * Create a new project in Android Studio
@@ -46,6 +48,7 @@ It indicates that there's no great risk to the user's privacy or security in let
 * Open up your `Main_Activity.java`
 
 ```java
+
 package com.stonedcoder.coding-blocks.permissions;
 
 import android.support.v7.app.AppCompatActivity;
@@ -71,7 +74,8 @@ if (permission != PackageManager.PERMISSION_GRANTED) {
 Log.i(TAG, "Permission to record denied");
 }
 }
-}```
+}
+```
 
 * An app before 6.0 attempts to make use of a feature that requires approval of a dangerous permission, and regardless of whether or not permission was previously granted, the code must check that the permission has been granted.
 
@@ -84,7 +88,9 @@ Log.i(TAG, "Permission to record denied");
 * Now open up `AndroidManifest.xml`
 
 ```xml
-<uses-permission android:name="android.permission.RECORD_AUDIO" />```
+
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
 
 * Compile and run the app once again and note that this time the permission denial message does not appear.
 
